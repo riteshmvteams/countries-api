@@ -81,3 +81,14 @@ button {
   display: grid;
   place-content: center;
 }
+
+.skelLoader {
+  background-color: lightgrey;
+  animation: load 1s linear infinite alternate-reverse;
+}
+
+@keyframes load {
+  100% {
+    opacity: 0.5;
+  }
+}

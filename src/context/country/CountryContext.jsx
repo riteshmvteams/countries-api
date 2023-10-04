@@ -4,7 +4,10 @@ import { countryReducer, initialState as countryState } from "./countryReducer";
 export const CountryContext = createContext();
 
 const CountryProvider = ({ children }) => {
-  const [{ countries }, dispatch] = useReducer(countryReducer, countryState);
+  const [{ countries, status, error }, dispatch] = useReducer(
+    countryReducer,
+    countryState
+  );
 
   useEffect(() => {
     const fetchAllCountryData = async () => {
@@ -26,7 +29,7 @@ const CountryProvider = ({ children }) => {
   }, []);
 
   return (
-    <CountryContext.Provider value={{ countries, dispatch }}>
+    <CountryContext.Provider value={{ countries, status, error, dispatch }}>
       {children}
     </CountryContext.Provider>
   );

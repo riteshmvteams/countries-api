@@ -1,7 +1,18 @@
 import { useCountry } from "../utils/hooks/useCountry";
+import SkelLoader from "./SkelLoader";
 
 export default function CountryListingSection() {
-  const { countries } = useCountry();
+  const { countries, status } = useCountry();
+
+  if (status === "loading") {
+    return (
+      <ul className="countries__list">
+        <li className="countries__list--item">
+          <SkelLoader width="100%" height="300px" />
+        </li>
+      </ul>
+    );
+  }
 
   return (
     <section className="countries">
