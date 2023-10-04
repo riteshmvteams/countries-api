@@ -7,9 +7,20 @@ export default function CountryListingSection() {
   if (status === "loading") {
     return (
       <ul className="countries__list">
-        <li className="countries__list--item">
-          <SkelLoader width="100%" height="300px" />
-        </li>
+        {Array.from({ length: 200 }).map((_, i) => {
+          return (
+            <li key={i} className="countries__list--item">
+              <SkelLoader width="100%" height="200px" />
+
+              <div className="countries__list--item-content">
+                <SkelLoader width="220px" height="30px" marginBottom="20px" />
+                <SkelLoader width="180px" height="15px" marginBottom="10px" />
+                <SkelLoader width="120px" height="15px" marginBottom="10px" />
+                <SkelLoader width="120px" height="15px" marginBottom="10px" />
+              </div>
+            </li>
+          );
+        })}
       </ul>
     );
   }
