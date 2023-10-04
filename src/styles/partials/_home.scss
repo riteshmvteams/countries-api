@@ -88,10 +88,16 @@
     background: var(--secondary-bg);
     border-radius: 0.75rem;
     overflow: hidden;
+    cursor: pointer;
+    transition: 0.2s;
+
+    &:hover {
+      transform: scale(1.05);
+    }
 
     &-img {
       width: 100%;
-      height: 200px;
+      height: 180px;
 
       & > img {
         width: 100%;

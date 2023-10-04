@@ -1,8 +1,14 @@
+// import { useEffect } from "react";
+import { formatNumber } from "../utils/helpers/formatNumber";
 import { useCountry } from "../utils/hooks/useCountry";
 import SkelLoader from "./SkelLoader";
 
 export default function CountryListingSection() {
   const { countries, status } = useCountry();
+
+  // useEffect(() => {
+  //   formatNumber();
+  // }, []);
 
   if (status === "loading") {
     return (
@@ -10,7 +16,7 @@ export default function CountryListingSection() {
         {Array.from({ length: 200 }).map((_, i) => {
           return (
             <li key={i} className="countries__list--item">
-              <SkelLoader width="100%" height="200px" />
+              <SkelLoader width="100%" height="180px" />
 
               <div className="countries__list--item-content">
                 <SkelLoader width="220px" height="30px" marginBottom="20px" />
@@ -29,6 +35,7 @@ export default function CountryListingSection() {
     <section className="countries">
       <ul className="countries__list">
         {countries?.map((country, i) => {
+          const popu = formatNumber(country.population);
           return (
             <li key={i} className="countries__list--item">
               <figure className="countries__list--item-img">
@@ -36,11 +43,11 @@ export default function CountryListingSection() {
               </figure>
 
               <div className="countries__list--item-content">
-                <h2>Title</h2>
+                <h2>{country.name.official}</h2>
 
                 <div>
                   <h4>
-                    Population: <span>545454545</span>
+                    Population: <span>{popu}</span>
                   </h4>
                   <h4>
                     Region: <span>Europe</span>
