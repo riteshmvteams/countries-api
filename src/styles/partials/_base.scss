@@ -1,0 +1,83 @@
+:root {
+  --primary-bg: #202c37;
+  --secondary-bg: #2b3945;
+  --primary-text: #ffffff;
+  --secondary-text: rgb(233, 230, 230);
+  --font-family: "Nunito", sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+  font-family: var(--font-family);
+}
+
+body {
+  @include typography();
+  background-color: var(--primary-bg);
+  color: var(--primary-text);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+ul,
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button,
+input {
+  background: none;
+  border: none;
+  color: inherit;
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+// global class styles
+.container {
+  width: 100%;
+  padding-inline: 1.5rem;
+  margin-inline: auto;
+
+  @include small() {
+    max-width: 500px;
+  }
+
+  @include medium() {
+    max-width: 740px;
+  }
+
+  @include large() {
+    max-width: 990px;
+  }
+
+  @include extraLarge() {
+    max-width: 1140px;
+  }
+
+  @include xxl() {
+    max-width: 1400px;
+  }
+}
+
+.make__center {
+  display: grid;
+  place-content: center;
+}
