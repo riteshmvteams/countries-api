@@ -6,10 +6,9 @@ export default function SearchBox() {
   const { dispatch } = useCountry();
 
   const handleSearch = (e) => {
-    console.log(e.target.value);
-    // setTerm(e.traget.value);
+    setSearchTerm(e.target.value);
 
-    // dispatch({ type: "searchFilter", payload: e.traget.value });
+    dispatch({ type: "searchFilter", payload: e.target.value });
   };
 
   return (

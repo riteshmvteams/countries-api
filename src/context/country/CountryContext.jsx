@@ -4,7 +4,7 @@ import { countryReducer, initialState as countryState } from "./countryReducer";
 export const CountryContext = createContext();
 
 const CountryProvider = ({ children }) => {
-  const [{ countries, status, error }, dispatch] = useReducer(
+  const [{ countries, status, error, filtered }, dispatch] = useReducer(
     countryReducer,
     countryState
   );
@@ -29,7 +29,9 @@ const CountryProvider = ({ children }) => {
   }, []);
 
   return (
-    <CountryContext.Provider value={{ countries, status, error, dispatch }}>
+    <CountryContext.Provider
+      value={{ countries, status, error, filtered, dispatch }}
+    >
       {children}
     </CountryContext.Provider>
   );
