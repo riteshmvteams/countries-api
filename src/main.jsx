@@ -4,8 +4,12 @@ import App from "./App.jsx";
 
 import "./styles/index.scss";
 
+import CountryProvider from "./context/country/CountryContext.jsx";
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <App />
+    <CountryProvider>
+      <App />
+    </CountryProvider>
   </React.StrictMode>
 );

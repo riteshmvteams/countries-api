@@ -1,5 +1,7 @@
 export const initialState = {
   countries: [],
+  status: "loading",
+  error: null,
 };
 
 export const countryReducer = (state, action) => {
