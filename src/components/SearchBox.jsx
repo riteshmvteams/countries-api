@@ -1,4 +1,17 @@
+import { useState } from "react";
+import { useCountry } from "../utils/hooks/useCountry";
+
 export default function SearchBox() {
+  const [searchTerm, setSearchTerm] = useState("");
+  const { dispatch } = useCountry();
+
+  const handleSearch = (e) => {
+    console.log(e.target.value);
+    // setTerm(e.traget.value);
+
+    // dispatch({ type: "searchFilter", payload: e.traget.value });
+  };
+
   return (
     <form className="filterSection__left">
       <svg
@@ -18,6 +31,8 @@ export default function SearchBox() {
         placeholder="Search any Country..."
         name="search"
         autoComplete="off"
+        value={searchTerm}
+        onChange={handleSearch}
       />
     </form>
   );

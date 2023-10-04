@@ -80,8 +80,8 @@
 .countries__list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  row-gap: 40px;
-  column-gap: 20px;
+  row-gap: 50px;
+  column-gap: 30px;
 
   &--item {
     width: 100%;
@@ -107,7 +107,29 @@
     }
 
     &-content {
-      padding: 20px;
+      padding: 20px 20px 60px;
+
+      & > h2 {
+        font-size: 2.4rem;
+        margin-bottom: 20px;
+        font-weight: 700;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+
+      & > div {
+        & > h4 {
+          font-size: 1.6rem;
+          font-weight: 700;
+        }
+
+        & span {
+          font-size: 1.4rem;
+          font-weight: 400;
+          color: var(--secondary-text);
+        }
+      }
     }
   }
 }

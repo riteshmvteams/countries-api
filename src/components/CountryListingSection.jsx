@@ -7,10 +7,6 @@ import SkelLoader from "./SkelLoader";
 export default function CountryListingSection() {
   const { countries, status } = useCountry();
 
-  // useEffect(() => {
-  //   formatNumber();
-  // }, []);
-
   if (status === "loading") {
     return (
       <ul className="countries__list">
@@ -36,7 +32,8 @@ export default function CountryListingSection() {
     <section className="countries">
       <ul className="countries__list">
         {countries?.map((country, i) => {
-          const popu = formatNumber(country.population);
+          const population = formatNumber(country?.population);
+
           return (
             <Link
               to={`/country/${country.name.common}`}
@@ -52,13 +49,13 @@ export default function CountryListingSection() {
 
                 <div>
                   <h4>
-                    Population: <span>{popu}</span>
+                    Population: <span>{population}</span>
                   </h4>
                   <h4>
-                    Region: <span>Europe</span>
+                    Region: <span>{country?.region}</span>
                   </h4>
                   <h4>
-                    Capital: <span>Berlin</span>
+                    Capital: <span>{country?.capital}</span>
                   </h4>
                 </div>
               </div>

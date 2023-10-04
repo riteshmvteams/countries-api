@@ -19,6 +19,18 @@ export const countryReducer = (state, action) => {
         status: "error",
         error: action.payload,
       };
+
+    case "searchFilter":
+      return {
+        ...state,
+        countries: state.countries.filter((country) => {
+          return (
+            country.name.official
+              .toLowerCase()
+              .indexOf(action.payload.toLowerCase()) > -1
+          );
+        }),
+      };
     default:
       return state;
   }
