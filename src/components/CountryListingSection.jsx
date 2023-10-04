@@ -1,4 +1,5 @@
 // import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { formatNumber } from "../utils/helpers/formatNumber";
 import { useCountry } from "../utils/hooks/useCountry";
 import SkelLoader from "./SkelLoader";
@@ -37,7 +38,11 @@ export default function CountryListingSection() {
         {countries?.map((country, i) => {
           const popu = formatNumber(country.population);
           return (
-            <li key={i} className="countries__list--item">
+            <Link
+              to={`/country/${country.name.common}`}
+              key={i}
+              className="countries__list--item"
+            >
               <figure className="countries__list--item-img">
                 <img src={country.flags.svg} alt="flag" />
               </figure>
@@ -57,7 +62,7 @@ export default function CountryListingSection() {
                   </h4>
                 </div>
               </div>
-            </li>
+            </Link>
           );
         })}
       </ul>
