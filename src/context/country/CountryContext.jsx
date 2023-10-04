@@ -18,9 +18,7 @@ const CountryProvider = ({ children }) => {
         const result = await response.json();
         dispatch({ type: "loadData", payload: result });
       } catch (error) {
-        console.log(error);
-      } finally {
-        console.log("done");
+        dispatch({ type: "errorWhileLoading", payload: "error?.message" });
       }
     };
 
