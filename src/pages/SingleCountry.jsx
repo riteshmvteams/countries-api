@@ -7,8 +7,6 @@ export default function SingleCountry() {
   const { name } = useParams();
   const { dispatch, singleCountry, status } = useCountry();
 
-  console.log(status, singleCountry);
-
   useEffect(() => {
     const fetchSingleCountry = async () => {
       try {
@@ -36,7 +34,7 @@ export default function SingleCountry() {
       <div className="container" style={{ marginTop: "130px" }}>
         <div className="singleCountry__content">
           <div>
-            <SkelLoader width="600px" height="300px" />
+            <SkelLoader width="520px" height="300px" />
           </div>
 
           <div>
@@ -72,10 +70,14 @@ export default function SingleCountry() {
 
       <section className="singleCountry__content">
         <div className="singleCountry__content--left">
-          <img src="https://flagcdn.com/ax.svg" alt="flag-big" />
+          <figure className="singleCountry__content--left-img">
+            <img src={singleCountry[0]?.flags?.svg} alt="flag-big" />
+          </figure>
         </div>
         <div className="singleCountry__content--right">
-          <h2 className="singleCountry__content--right-title">Title</h2>
+          <h2 className="singleCountry__content--right-title">
+            {singleCountry[0]?.name?.official}
+          </h2>
 
           <div className="singleCountry__content--right-content">
             <div>

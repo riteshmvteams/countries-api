@@ -23,6 +23,19 @@
   justify-content: flex-start;
   gap: 50px;
 
+  &--left {
+    &-img {
+      max-width: 550px;
+      height: 400px;
+
+      & img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+
   &--right {
     display: flex;
     flex-direction: column;
