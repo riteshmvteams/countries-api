@@ -1,9 +1,59 @@
+import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
+import { useCountry } from "../utils/hooks/useCountry";
+import SkelLoader from "../components/SkelLoader";
 
 export default function SingleCountry() {
   const { name } = useParams();
+  const { dispatch, singleCountry, status } = useCountry();
+
+  console.log(status, singleCountry);
+
+  useEffect(() => {
+    const fetchSingleCountry = async () => {
+      try {
+        dispatch({ type: "dataLoading" });
+        const response = await fetch(
+          `https://restcountries.com/v3.1/name/${name}`
+        );
+
+        if (!response.ok) {
+          throw new Error("Error while getting the single country response");
+        }
+
+        const result = await response.json();
+        dispatch({ type: "loadSingleCountry", payload: result });
+      } catch (error) {
+        dispatch({ type: "errorWhileLoading", payload: error });
+      }
+    };
+
+    fetchSingleCountry();
+  }, [name, dispatch]);
+
+  if (status === "loading") {
+    return (
+      <div className="container" style={{ marginTop: "130px" }}>
+        <div className="singleCountry__content">
+          <div>
+            <SkelLoader width="600px" height="300px" />
+          </div>
+
+          <div>
+            <SkelLoader width="350px" height="30px" marginBottom="20px" />
+            <SkelLoader width="150px" height="20px" marginBottom="10px" />
+            <SkelLoader width="150px" height="20px" marginBottom="10px" />
+            <SkelLoader width="150px" height="20px" marginBottom="10px" />
+            <SkelLoader width="150px" height="20px" marginBottom="10px" />
+            <SkelLoader width="150px" height="20px" marginBottom="10px" />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <main className="singleCountry">
+    <main className="singleCountry container">
       <section className="singleCountry__top">
         <Link to="/">
           <span className="make__center">
@@ -64,7 +114,7 @@ export default function SingleCountry() {
             </div>
           </div>
 
-          <div>
+          <div className="country__border">
             <h4>Border Countries:</h4>
             <ul>
               <li>first</li>

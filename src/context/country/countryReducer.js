@@ -3,6 +3,7 @@ export const initialState = {
   status: "loading",
   error: null,
   filtered: [],
+  singleCountry: [],
 };
 
 export const countryReducer = (state, action) => {
@@ -35,6 +36,19 @@ export const countryReducer = (state, action) => {
               .indexOf(action.payload.toLowerCase()) > -1
           );
         }),
+      };
+
+    case "dataLoading":
+      return {
+        ...state,
+        status: "loading",
+      };
+
+    case "loadSingleCountry":
+      return {
+        ...state,
+        singleCountry: action.payload,
+        status: "loaded",
       };
     default:
       return state;
