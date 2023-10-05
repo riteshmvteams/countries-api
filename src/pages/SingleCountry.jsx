@@ -51,16 +51,15 @@ export default function SingleCountry() {
     );
   }
 
-  if (status === "error") {
+  if (error !== null) {
     return <h1>Some Error Occured while fetching data</h1>;
   }
 
   console.log(singleCountry);
 
-  if (singleCountry === undefined) {
+  if (singleCountry[0] === undefined) {
     return;
   }
-
   const {
     name: { official, nativeName },
     flags: { svg },
