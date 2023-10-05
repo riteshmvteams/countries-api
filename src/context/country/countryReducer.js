@@ -42,6 +42,7 @@ export const countryReducer = (state, action) => {
       return {
         ...state,
         status: "loading",
+        error: null,
       };
 
     case "loadSingleCountry":
@@ -49,6 +50,7 @@ export const countryReducer = (state, action) => {
         ...state,
         singleCountry: action.payload,
         status: "loaded",
+        error: null,
       };
     default:
       return state;

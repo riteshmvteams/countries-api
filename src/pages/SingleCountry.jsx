@@ -2,10 +2,11 @@ import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useCountry } from "../utils/hooks/useCountry";
 import SkelLoader from "../components/SkelLoader";
+import { formatNumber } from "../utils/helpers/formatNumber";
 
 export default function SingleCountry() {
   const { name } = useParams();
-  const { dispatch, singleCountry, status } = useCountry();
+  const { dispatch, singleCountry, status, error } = useCountry();
 
   useEffect(() => {
     const fetchSingleCountry = async () => {
@@ -50,6 +51,24 @@ export default function SingleCountry() {
     );
   }
 
+  const {
+    name: { official, nativeName },
+    flags: { svg },
+    population,
+    region,
+    subregion,
+    capital,
+    tld,
+    currencies,
+    languages,
+    borders,
+  } = singleCountry[0];
+
+  const number = formatNumber(population);
+  const ArrofLanguages = Object.entries(languages);
+  const ArrofCurrencies = Object.entries(currencies);
+  const ArrofName = Object.entries(nativeName);
+
   return (
     <main className="singleCountry container">
       <section className="singleCountry__top">
@@ -71,47 +90,47 @@ export default function SingleCountry() {
       <section className="singleCountry__content">
         <div className="singleCountry__content--left">
           <figure className="singleCountry__content--left-img">
-            <img src={singleCountry[0]?.flags?.svg} alt="flag-big" />
+            <img src={svg} alt={official} />
           </figure>
         </div>
         <div className="singleCountry__content--right">
-          <h2 className="singleCountry__content--right-title">
-            {singleCountry[0]?.name?.official}
-          </h2>
+          <h2 className="singleCountry__content--right-title">{official}</h2>
 
           <div className="singleCountry__content--right-content">
             <div>
               <h4>
-                Native Name: <span>Åland</span>
+                Native Name:{" "}
+                <span>
+                  {ArrofName[1]?.[1]?.official || ArrofName[0]?.[1]?.common}
+                </span>
               </h4>
               <h4>
-                Native Name: <span>Åland</span>
+                Population: <span>{number}</span>
               </h4>
               <h4>
-                Native Name: <span>Åland</span>
+                Region: <span>{region}</span>
               </h4>
               <h4>
-                Native Name: <span>Åland</span>
+                Sub Region: <span>{subregion}</span>
               </h4>
               <h4>
-                Native Name: <span>Åland</span>
+                Capital: <span>{capital}</span>
               </h4>
             </div>
             <div>
               <h4>
-                Native Name: <span>Åland</span>
+                Top Level Domain: <span>{tld}</span>
               </h4>
               <h4>
-                Native Name: <span>Åland</span>
+                Currencies: <span>{ArrofCurrencies[0][1].name}</span>
               </h4>
               <h4>
-                Native Name: <span>Åland</span>
-              </h4>
-              <h4>
-                Native Name: <span>Åland</span>
-              </h4>
-              <h4>
-                Native Name: <span>Åland</span>
+                Languages:{" "}
+                <div>
+                  {ArrofLanguages.map((lang, i) => {
+                    return <span key={i}>{lang[1]}, </span>;
+                  })}
+                </div>
               </h4>
             </div>
           </div>
@@ -119,8 +138,13 @@ export default function SingleCountry() {
           <div className="country__border">
             <h4>Border Countries:</h4>
             <ul>
-              <li>first</li>
-              <li>first</li>
+              {borders?.length > 0 ? (
+                borders?.map((border, i) => {
+                  return <li key={i}>{border}</li>;
+                })
+              ) : (
+                <span>Country with no borders</span>
+              )}
             </ul>
           </div>
         </div>

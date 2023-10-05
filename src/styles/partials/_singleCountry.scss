@@ -25,8 +25,10 @@
 
   &--left {
     &-img {
-      max-width: 550px;
-      height: 400px;
+      max-width: 500px;
+      height: 300px;
+      border-radius: 0.75rem;
+      overflow: hidden;
 
       & img {
         width: 100%;
