@@ -55,8 +55,6 @@ export default function SingleCountry() {
     return <h1>Some Error Occured while fetching data</h1>;
   }
 
-  console.log(singleCountry);
-
   if (singleCountry[0] === undefined) {
     return;
   }
