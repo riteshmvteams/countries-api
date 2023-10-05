@@ -5,6 +5,7 @@ import AppLayout from "./Layout/AppLayout";
 // pages
 import HomePage from "./pages/HomePage";
 import SingleCountry from "./pages/SingleCountry";
+import NotFound from "./pages/NotFound";
 // router new version
 const router = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
       {
         path: "/country/:name",
         element: <SingleCountry />,
+      },
+      {
+        path: "*",
+        element: <NotFound />,
       },
     ],
   },

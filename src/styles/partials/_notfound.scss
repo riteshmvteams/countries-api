@@ -1,0 +1,25 @@
+.notfound__page {
+  min-height: calc(100vh - 100px);
+  @include flex-center();
+  flex-direction: column;
+  gap: 2rem;
+
+  h1 {
+    font-size: 4rem;
+  }
+
+  .link__button {
+    padding: 1.5rem 3.5rem;
+    background-color: var(--secondary-bg);
+    border-radius: 0.75rem;
+    font: inherit;
+    font-weight: 700;
+    font-size: 1.8rem;
+    letter-spacing: 1.75px;
+    text-transform: uppercase;
+
+    &:hover {
+      opacity: 0.75;
+    }
+  }
+}
