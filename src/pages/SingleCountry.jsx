@@ -51,6 +51,16 @@ export default function SingleCountry() {
     );
   }
 
+  if (status === "error") {
+    return <h1>Some Error Occured while fetching data</h1>;
+  }
+
+  console.log(singleCountry);
+
+  if (singleCountry === undefined) {
+    return;
+  }
+
   const {
     name: { official, nativeName },
     flags: { svg },
@@ -122,7 +132,7 @@ export default function SingleCountry() {
                 Top Level Domain: <span>{tld}</span>
               </h4>
               <h4>
-                Currencies: <span>{ArrofCurrencies[0][1].name}</span>
+                Currencies: <span>{ArrofCurrencies[0]?.[1].name}</span>
               </h4>
               <h4>
                 Languages:{" "}
